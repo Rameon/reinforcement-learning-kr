@@ -41,6 +41,10 @@ class PolicyIteration:
         # 감가율
         self.discount_factor = 0.9
 
+    # 정책 평가
+    # DP에서는 사용자가 주는 입력에 따라 에이전트가 역할을 수행하기 때문에,
+    # 에이전트는 environment.py의 GraphicDisplay 클래스에서 실행됨
+    # 따라서 GraphicDisplay 클래스는 PolicyIteration 클래스의 객체인 policy_iteration을 상속받음
     def policy_evaluation(self):
 
         # 다음 가치함수 초기화
