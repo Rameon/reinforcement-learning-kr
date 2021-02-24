@@ -148,12 +148,14 @@ class PolicyIteration:
                 return index
 
     # 상태에 따른 정책 반환
+    # self.policy_table로 저장돼 있는 정책에서 해당 상태에 대한 정책을 반환함
     def get_policy(self, state):
         if state == [2, 2]:
             return 0.0
         return self.policy_table[state[0]][state[1]]
 
     # 가치 함수의 값을 반환
+    # self.value_table로 저장돼 있는 가치함수에서 해당 상태에 해당하는 가치함수를 반환함
     def get_value(self, state):
         # 소숫점 둘째 자리까지만 계산
         return round(self.value_table[state[0]][state[1]], 2)
