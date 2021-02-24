@@ -32,13 +32,20 @@ class PolicyIteration:
         # 보상과 상태 변환 확률은 에이전트가 아니라, 환경에 속한 것이므로 env 객체로 정의함
 
         # 가치함수를 2차원 리스트로 초기화
+        # 정책 이터레이션은 모든 상태에 대해 가치함수를 계산하기 때문에 value_table 이라는 2차원 리스트 변수로 가치함수를 선언함
+        # 그리드 월드의 환경은 세로 5칸, 가로 5칸의 크기를 가지므로 5X5의 2차원 리스트가 됨
+        # 모든 상태의 가치함수의 값을 0으로 초기화함
         self.value_table = [[0.0] * env.width for _ in range(env.height)]
+
         # 상 하 좌 우 동일한 확률로 정책 초기화
+        # 정책 policy_table 은 모든 상태에 대해 상, 하, 좌, 우에 해당하는 각 행동의 확률을 담고 있는 리스트임
+        # 따라서 5X5X4의 3차원 리스트로 생성함
+        # 정책은 무작위 정책으로 초기화 하는데, 이때 상,하,좌,우 행동의 확률이 25%임
         self.policy_table = [[[0.25, 0.25, 0.25, 0.25]] * env.width
                                     for _ in range(env.height)]
         # 마침 상태의 설정
         self.policy_table[2][2] = []
-        # 감가율
+        # 감가율(할인율)
         self.discount_factor = 0.9
 
     # 정책 평가
@@ -46,7 +53,6 @@ class PolicyIteration:
     # 에이전트는 environment.py의 GraphicDisplay 클래스에서 실행됨
     # 따라서 GraphicDisplay 클래스는 PolicyIteration 클래스의 객체인 policy_iteration을 상속받음
     def policy_evaluation(self):
-
         # 다음 가치함수 초기화
         next_value_table = [[0.00] * self.env.width
                                     for _ in range(self.env.height)]
