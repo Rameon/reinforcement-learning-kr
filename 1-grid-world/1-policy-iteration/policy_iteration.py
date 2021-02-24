@@ -134,6 +134,7 @@ class PolicyIteration:
         self.policy_table = next_policy
 
     # 특정 상태에서 정책에 따른 행동을 반환
+    # 에이전트가 정책에 따라서 움직이려면 특정 상태에서 어떤 행동을 해야 할지 알아야 하고, 이 역할을 하는 것이 get_action 함수임
     def get_action(self, state):
         # 0 ~ 1 사이의 값을 무작위로 추출
         random_pick = random.randrange(100) / 100
