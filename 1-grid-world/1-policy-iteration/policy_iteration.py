@@ -54,6 +54,9 @@ class PolicyIteration:
     # 따라서 GraphicDisplay 클래스는 PolicyIteration 클래스의 객체인 policy_iteration을 상속받음
     def policy_evaluation(self):
         # 다음 가치함수 초기화
+        # 정책 평가에서 에이전트는 모든 상태의 가치함수를 업데이트함
+        # 이를 위해 next_value_table 을 선언하고, 계산 결과를 여기에 저장함
+        # 모든 상태에 대해 벨만 기대 방정식의 계산이 끝나면 현재의 value_table에 next_value_table을 덮어쓰는 식으로 정책 평가를 진행함
         next_value_table = [[0.00] * self.env.width
                                     for _ in range(self.env.height)]
 
