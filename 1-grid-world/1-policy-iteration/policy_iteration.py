@@ -85,9 +85,15 @@ class PolicyIteration:
 
         self.value_table = next_value_table
 
+    # 정책 개선
     # 현재 가치 함수에 대해서 탐욕 정책 발전
+    # 정책 평가를 통해 정책을 평가하면 그에 따른 새로운 가치함수를 얻음
+    # 에이전트는 새로운 가치함수를 통해 정책을 업데이트함
     def policy_improvement(self):
-        next_policy = self.policy_table
+        next_policy = self.policy_table  # 정책 발전에서 정책 policy_table을 복사한 next_policy에 업데이트된 정책을 저장함
+        # 정책을 업데이트하는 방법 중에서 탐욕 정책 발전을 사용함
+        # 탐욕 정책 발전 : 가치가 가장 높은 하나의 행동을 선택하는 것
+        #               현재 상태에서 가장 좋은 행동이 여러 개일 수도 있는데, 가장 좋은 행동들을 동일한 확률로 선택하는 정책으로 업데이트함
         for state in self.env.get_all_states():
             if state == [2, 2]:
                 continue
