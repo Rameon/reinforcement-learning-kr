@@ -74,6 +74,10 @@ class PolicyIteration:
                 next_state = self.env.state_after_action(state, action)
                 reward = self.env.get_reward(state, action)
                 next_value = self.get_value(next_state)
+                # 벨만 기대 방정식을 계산하는 부분
+                # get_policy 함수를 통해 각 상태에서 각 행동에 대한 확률값을 구함
+                # 다음 상태로 갔을 때 받을 보상과 다음 상태의 가치함수를 할인해서 더함
+                # 정책이 각 행동에 대한 확률을 나타내기 때문에 모든 행동에 대해 value를 계산하고 더하면 기댓값을 계산한 것이 됨
                 value += (self.get_policy(state)[action] *
                           (reward + self.discount_factor * next_value))
 
