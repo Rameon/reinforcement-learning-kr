@@ -97,12 +97,15 @@ class PolicyIteration:
         for state in self.env.get_all_states():
             if state == [2, 2]:
                 continue
+
             value = -99999
+
             max_index = []
             # 반환할 정책 초기화
             result = [0.0, 0.0, 0.0, 0.0]
 
-            # 모든 행동에 대해서 [보상 + (감가율 * 다음 상태 가치함수)] 계산
+            # 모든 행동에 대해서 [보상 + (감가율 * 다음 상태 가치함수)] 계산함
+            # 계산한 값은 max_index 리스트에 저장함
             for index, action in enumerate(self.env.possible_actions):
                 next_state = self.env.state_after_action(state, action)
                 reward = self.env.get_reward(state, action)
@@ -118,6 +121,9 @@ class PolicyIteration:
                     max_index.append(index)
 
             # 행동의 확률 계산
+            # max_index 에 담긴 값이 여러 개라면 에이전트는 max_index에 담긴 index의 행동들을 동일한 확률에 기반해서 선택함
+            # 이를 구현하기 위해 1을 max_index의 길이로 나눠서 행동의 확률을 계산함
+            # max_index의 index에 해당하는 행동에 계산한 확률값을 저장함
             prob = 1 / len(max_index)
 
             for index in max_index:
