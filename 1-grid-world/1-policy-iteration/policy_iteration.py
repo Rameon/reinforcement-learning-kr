@@ -70,6 +70,7 @@ class PolicyIteration:
 
             # 벨만 기대 방정식
             for action in self.env.possible_actions:
+                # 행동을 취했을 경우, 다음 상태가 어딘지 알려주는 역할을 하는 것 : env.state_after_action(state, action)
                 next_state = self.env.state_after_action(state, action)
                 reward = self.env.get_reward(state, action)
                 next_value = self.get_value(next_state)
