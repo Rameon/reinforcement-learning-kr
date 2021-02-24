@@ -123,9 +123,9 @@ class PolicyIteration:
             # 행동의 확률 계산
             # max_index 에 담긴 값이 여러 개라면 에이전트는 max_index에 담긴 index의 행동들을 동일한 확률에 기반해서 선택함
             # 이를 구현하기 위해 1을 max_index의 길이로 나눠서 행동의 확률을 계산함
-            # max_index의 index에 해당하는 행동에 계산한 확률값을 저장함
             prob = 1 / len(max_index)
 
+            # max_index의 index에 해당하는 행동에 계산한 확률값을 저장함
             for index in max_index:
                 result[index] = prob
 
